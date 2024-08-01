@@ -1,7 +1,7 @@
 {
   "name": "tiny-hanabi-playground",
   "scripts": {
-    "dev": "wrangler dev src/index.ts",
+    "dev": "wrangler dev src/index.tsx",
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
