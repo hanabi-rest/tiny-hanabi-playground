@@ -47,11 +47,8 @@ export const enableSubdomain = async ({ accountId, workerName, token }: { accoun
 };
 
 type DeployCloudflareParams = {
-    environmentId: string;
     accountId: string;
     name: string;
-    isDeploySql: boolean;
-    strictSqlExecution?: boolean;
     sql?: string;
     dummySql?: string;
     token: string;
@@ -63,8 +60,6 @@ export const deployCloudflare = async (params: DeployCloudflareParams) => {
     const {
         accountId,
         name,
-        isDeploySql,
-        strictSqlExecution = true,
         sql,
         javascript,
         token,
@@ -98,7 +93,7 @@ export const deployCloudflare = async (params: DeployCloudflareParams) => {
     let subdomain: string | null = null;
     let d1Id: string | null = null;
 
-    if (isDeploySql && sql) {
+    if (sql) {
         try {
             const d1CreateResult = await client.d1.database.create({
                 account_id: accountId,
@@ -130,7 +125,7 @@ export const deployCloudflare = async (params: DeployCloudflareParams) => {
             });
 
             const errorSqlResult = queryResult.filter((res) => res.success === false);
-            if (errorSqlResult.length > 0 && strictSqlExecution) {
+            if (errorSqlResult.length > 0) {
                 throw new Error("Failed to execute SQL code.");
             }
         } catch (e) {

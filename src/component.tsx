@@ -22,24 +22,36 @@ export const renderer = jsxRenderer(({ children }) => {
   `
 })
 
-export const AddTodo = () => (
-  <form hx-post="/deploy-cloudflare" hx-target="#todo" hx-swap="beforebegin" _="on htmx:afterRequest reset() me" class="mb-4">
+export const DeployCode = () => (
+  <form hx-post="/deploy-cloudflare" hx-target="#deploy" hx-swap="beforebegin" _="on htmx:afterRequest reset() me" class="mb-4">
+  <div class="mb-2">
     <div class="mb-2">
-      <textarea name="code" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5" />
+      <label for="accountId">Account ID</label>
+      <input name="accountId" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5" id="accountId" />
     </div>
+    <div class="mb-2">
+      <label for="name">Name</label>
+      <input name="name" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5" id="name" />
+    </div>
+    <div class="mb-2">
+      <label for="token">Token</label>
+      <input name="token" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5" id="token" />
+    </div>
+    <div class="mb-2">
+      <label for="sql">SQL</label>
+      <input name="sql" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5" id="sql" />
+    </div>
+    <div class="mb-2">
+      <label for="code">JavaScript</label>
+        <textarea 
+          name="JavaScript" 
+          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2.5 w-full h-64" 
+          id="code" 
+        />
+    </div>
+  </div>
     <button class="text-white bg-blue-700 hover:bg-blue-800 rounded-lg px-5 py-2 text-center" type="submit">
       Deploy
     </button>
   </form>
-)
-
-export const Item = ({ title, id }: { title: string; id: string }) => (
-  <p
-    hx-delete={`/todo/${id}`}
-    hx-swap="outerHTML"
-    class="flex row items-center justify-between py-1 px-4 my-1 rounded-lg text-lg border bg-gray-100 text-gray-600 mb-2"
-  >
-    {title}
-    <button class="font-medium">Delete</button>
-  </p>
 )
