@@ -1,8 +1,5 @@
-```
-npm install
-npm run dev
-```
+# tiny-hanabi-playground
 
-```
-npm run deploy
-```
+PoC to deploy Cloudflare Workers scripts and SQL to D1.
+
+https://tiny-hanabi-playground.yutakobayashi.workers.dev
